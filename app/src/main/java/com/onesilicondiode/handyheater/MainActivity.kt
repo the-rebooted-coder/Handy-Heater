@@ -2,6 +2,7 @@ package com.onesilicondiode.handyheater
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
     private fun startGPS() {
         if (!checkPermission()) {
             requestPermission()
+        }
+        else {
+            ContextCompat.startForegroundService(this, Intent(this, LocationService::class.java))
+
         }
     }
     private fun checkPermission(): Boolean {
