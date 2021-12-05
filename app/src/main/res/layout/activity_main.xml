@@ -15,7 +15,8 @@
         android:backgroundTint="#770000"
         android:layout_centerInParent="true"
         android:elevation="30dp"
-        android:text="@string/heat_me_baby"/>
+        android:text="@string/heat_me_baby"
+        android:onClick="StartHeating"/>
 
     <Button
         android:id="@+id/freeze"
@@ -26,6 +27,8 @@
         android:elevation="30dp"
         android:backgroundTint="#004083"
         android:layout_centerInParent="true"
-        android:text="@string/cool_me" />
+        android:text="@string/cool_me"
+        android:onClick="stopHeating"
+        />
 
 </RelativeLayout>
