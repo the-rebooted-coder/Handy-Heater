@@ -9,18 +9,33 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        freeze.visibility = View.GONE
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun StartHeating(view: View) {
-        freeze.setTransitionVisibility(View.VISIBLE)
+        freeze.visibility = View.VISIBLE
 
 
-        heat.setTransitionVisibility(View.INVISIBLE)
+
+        heat.visibility = View.GONE
 
     }
-    fun stopHeating(view: View) {}
+    fun stopHeating(view: View) {
+
+
+        freeze.visibility = View.GONE
+
+
+
+        heat.visibility = View.VISIBLE
+
+    }
 }
