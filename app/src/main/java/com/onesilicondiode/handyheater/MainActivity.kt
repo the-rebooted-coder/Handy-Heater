@@ -8,7 +8,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
@@ -20,9 +23,6 @@ import androidx.core.content.ContextCompat
 import com.onesilicondiode.handyheater.LocationService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.io.IOException
 
 @SuppressLint("StaticFieldLeak")
