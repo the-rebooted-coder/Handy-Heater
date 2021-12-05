@@ -1,3 +1,5 @@
+package com.onesilicondiode.handyheater
+
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -13,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.onesilicondiode.handyheater.LocationService
-import com.onesilicondiode.handyheater.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 
