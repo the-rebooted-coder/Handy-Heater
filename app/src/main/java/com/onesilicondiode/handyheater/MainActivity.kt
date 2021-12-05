@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         haptics()
         uselessFlame.visibility = View.VISIBLE
         uselessFlame.playAnimation()
+        if(uselessSnow.isAnimating){
+            uselessSnow.visibility = View.GONE
+        }
     }
 
     private fun startGPS() {
@@ -92,7 +95,9 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         haptics()
         removeWakeLock()
         heat.visibility = View.VISIBLE
-
+        uselessFlame.visibility = View.GONE
+        uselessSnow.visibility = View.VISIBLE
+        uselessSnow.playAnimation()
     }
 
     private fun removeWakeLock() {

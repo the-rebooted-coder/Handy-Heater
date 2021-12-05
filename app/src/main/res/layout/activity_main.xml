@@ -9,13 +9,26 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/uselessFlame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-30dp"
         app:lottie_autoPlay="false"
         app:lottie_fileName="flame.json"
         app:lottie_loop="true" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/uselessSnow"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-100dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="snow.json"
+        app:lottie_loop="true" />
+
 
     <TextView
         android:id="@+id/cpuTemp"
@@ -25,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:layout_marginTop="250dp"
-        android:textSize="18sp"/>
+        android:textSize="14sp"/>
 
     <Button
         android:id="@+id/heat"
@@ -34,7 +47,9 @@
         android:drawableLeft= "@drawable/fire"
         android:backgroundTint="#770000"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:elevation="30dp"
+        android:layout_below="@+id/cpuTemp"
         android:text="@string/heat_me_baby"
         android:onClick="StartHeating"
         tools:ignore="RtlHardcoded" />
@@ -43,13 +58,15 @@
         android:id="@+id/freeze"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft= "@drawable/freeze"
-        android:visibility="invisible"
-        android:elevation="30dp"
-        android:backgroundTint="#004083"
         android:layout_centerInParent="true"
-        android:text="@string/cool_me"
+        android:backgroundTint="#004083"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/cpuTemp"
+        android:drawableLeft="@drawable/freeze"
+        android:elevation="30dp"
         android:onClick="stopHeating"
+        android:text="@string/cool_me"
+        android:visibility="invisible"
         tools:ignore="RtlHardcoded" />
 
 </RelativeLayout>
