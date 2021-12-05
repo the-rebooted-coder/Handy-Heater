@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Handy Heater</string>
     <string name="heat_me_baby">Heat me Baby!</string>
+    <string name="cool_me">Cool me</string>
 </resources>
