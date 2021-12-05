@@ -8,10 +8,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.os.Build
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
 import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
@@ -22,6 +19,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.onesilicondiode.handyheater.LocationService
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 @SuppressLint("StaticFieldLeak")
 private var cpuTemp: TextView? = null
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         }
     }
 
+    @DelicateCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.Q)
     fun StartHeating(view: View) {
         Toast.makeText(this, "Heating Begins", Toast.LENGTH_SHORT).show()
@@ -58,6 +61,15 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         acquireWakeLock()
         startGPS()
         haptics()
+        setFlames()
+        startLoopAndPing()
+    }
+    @DelicateCoroutinesApi
+    private fun startLoopAndPing() {
+      isOnline()
+    }
+
+    private fun setFlames() {
         uselessFlame.visibility = View.VISIBLE
         uselessFlame.playAnimation()
         if(uselessSnow.isAnimating){
@@ -134,5 +146,18 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         if (isTemperatureSensorAvailable == true) {
             sensorManager!!.unregisterListener(this)
         }
+    }
+    fun isOnline(): Boolean {
+        val runtime = Runtime.getRuntime()
+        try {
+            val ipProcess = runtime.exec("/system/bin/ping -c 1 14.139.241.200")
+            val exitValue = ipProcess.waitFor()
+            return exitValue == 0
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        return false
     }
 }
