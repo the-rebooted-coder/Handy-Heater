@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         freeze.visibility = View.GONE
-        setTemps();
+        uselessFlame.visibility = View.GONE
+        setTemps()
     }
 
     private fun setTemps() {
@@ -57,6 +58,8 @@ class MainActivity : AppCompatActivity(),SensorEventListener {
         acquireWakeLock()
         startGPS()
         haptics()
+        uselessFlame.visibility = View.VISIBLE
+        uselessFlame.playAnimation()
     }
 
     private fun startGPS() {

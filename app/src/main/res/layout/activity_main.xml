@@ -7,14 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/uselessFlame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        app:lottie_autoPlay="false"
+        app:lottie_fileName="flame.json"
+        app:lottie_loop="true" />
+
     <TextView
         android:id="@+id/cpuTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cpu_temp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:textSize="16sp"/>
+        android:textAlignment="center"
+        android:layout_marginTop="250dp"
+        android:textSize="18sp"/>
 
     <Button
         android:id="@+id/heat"
