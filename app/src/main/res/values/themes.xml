@@ -3,7 +3,7 @@
     <style name="Theme.HandyHeater" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#580000</item>
-        <item name="colorPrimaryVariant">#BC33BEFF</item>
+        <item name="colorPrimaryVariant">#BC9B0000</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
