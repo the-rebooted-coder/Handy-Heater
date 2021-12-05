@@ -1,14 +1,20 @@
 package com.onesilicondiode.handyheater
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -17,14 +23,30 @@ import androidx.core.content.ContextCompat
 import com.onesilicondiode.handyheater.LocationService
 import kotlinx.android.synthetic.main.activity_main.*
 
+@SuppressLint("StaticFieldLeak")
+private var cpuTemp: TextView? = null
+private var sensorManager: SensorManager? = null
+private var tempSensor: Sensor? = null
+private var isTemperatureSensorAvailable: Boolean? = null
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(),SensorEventListener {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         freeze.visibility = View.GONE
+        setTemps();
+    }
 
+    private fun setTemps() {
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        if (sensorManager!!.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE) != null) {
+            tempSensor = sensorManager!!.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
+            isTemperatureSensorAvailable = true
+        } else {
+            cpuTemp!!.text = getString(R.string.sensor_not_avail)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -81,6 +103,28 @@ class MainActivity : AppCompatActivity() {
         } else {
             //deprecated in API 26
             vibrator.vibrate(28)
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onSensorChanged(sensorEvent: SensorEvent) {
+        cpuTemp!!.text = sensorEvent.values[0].toString() + "°" + "C"
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
+        TODO("Not yet implemented")
+    }
+    override fun onResume() {
+        super.onResume()
+        if (isTemperatureSensorAvailable == true) {
+            sensorManager!!.registerListener(this, tempSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isTemperatureSensorAvailable == true) {
+            sensorManager!!.unregisterListener(this)
         }
     }
 }

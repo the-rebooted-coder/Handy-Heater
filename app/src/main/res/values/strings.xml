@@ -3,4 +3,5 @@
     <string name="heat_me_baby">Heat me Baby!</string>
     <string name="cool_me">Cool me</string>
     <string name="cpu_temp">CPU Temp</string>
+    <string name="sensor_not_avail">Temperature Sensor Not Available</string>
 </resources>
