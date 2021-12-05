@@ -22,7 +22,6 @@ import android.view.WindowManager
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         freeze.visibility = View.GONE
@@ -40,9 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun acquireWakeLock() {
-        window.addFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
     }
 
@@ -50,9 +47,15 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Heating Stop", Toast.LENGTH_SHORT).show()
         freeze.visibility = View.GONE
         haptics()
+        removeWakeLock();
         heat.visibility = View.VISIBLE
 
     }
+
+    private fun removeWakeLock() {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
     private fun haptics() {
         val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
