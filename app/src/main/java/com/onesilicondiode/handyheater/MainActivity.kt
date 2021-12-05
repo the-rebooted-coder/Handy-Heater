@@ -1,22 +1,20 @@
-package com.onesilicondiode.handyheater
-
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import kotlinx.android.synthetic.main.activity_main.*
-import android.os.PowerManager
-import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.onesilicondiode.handyheater.LocationService
+import com.onesilicondiode.handyheater.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         freeze.visibility = View.VISIBLE
         heat.visibility = View.GONE
         acquireWakeLock()
-        startGPS();
+        startGPS()
         haptics()
     }
 
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Heating Stop", Toast.LENGTH_SHORT).show()
         freeze.visibility = View.GONE
         haptics()
-        removeWakeLock();
+        removeWakeLock()
         heat.visibility = View.VISIBLE
 
     }

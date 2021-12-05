@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HandyHeater"
-        android:fullBackupContent="">
+        android:fullBackupContent="true">
         <activity
             android:name=".Splash"
             android:exported="true"
