@@ -6,7 +6,8 @@ import android.location.LocationManager
 import android.os.Bundle
 
 class LocationHelper {
-    var LOCATION_REFRESH_TIME = 1 // 3 seconds. The Minimum Time to get location update
+    var LOCATION_REFRESH_TIME = 1
+    // 0.001 seconds. The Minimum Time to get location update
     var LOCATION_REFRESH_DISTANCE =
         0 // 0 meters. The Minimum Distance to be changed to get location update
 
